@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  once:
+    docker: 
+      - image: circleci/node:6
+    steps:
+      - checkout
+      - run: echo "hello world"
+  convertToHtml:
+    docker: 
+      - image: asciidoctor/docker-asciidoctor
+    steps:
+      - checkout
+      - run: asciidoctor -b html5 /documents/ios.adoc
+      - run: echo "hello world"
+workflows:
+  version: 2
+  build:
+    jobs:
+      - once
+      - convertToHtml
