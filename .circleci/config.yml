@@ -1,21 +1,36 @@
+defaults: &defaults
+  working_directory: /tmp
+
 version: 2
 jobs:
   once:
+    <<: *defaults
     docker: 
       - image: circleci/node:6
     steps:
       - checkout
       - run: echo "hello world"
-  convertToHtml:
+      - run: ls
+      - run: pwd
+  build:
+    <<: *defaults
     docker: 
       - image: asciidoctor/docker-asciidoctor
     steps:
       - checkout
-      - run: asciidoctor -b html5 /documents/ios.adoc
-      - run: echo "hello world"
+      - run: pwd
+      - run: asciidoctor getting-started.adoc 
+      - run: ls
+      - persist_to_workspace:
+          root: .
+          paths: getting-started.html
+            - 
 workflows:
   version: 2
   build:
     jobs:
-      - once
       - convertToHtml
+      - once:
+        requires:
+          - convertToHtml
+      
