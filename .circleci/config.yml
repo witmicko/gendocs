@@ -9,7 +9,7 @@ jobs:
       - image: circleci/node:6
     steps:
       - attach_workspace:
-          at: /repoasda
+          at: /repoasda/workspace
       - run: ls
       - run: pwd
       - git clone git@github.com:witmicko/origin-web-console.git
