@@ -8,15 +8,18 @@ jobs:
     docker: 
       - image: circleci/node:6
     steps:
-      - checkout
       - run: echo "hello world"
       - run: ls
       - run: pwd
+      - git clone git@github.com:witmicko/origin-web-console.git
+      - run: ls
   convertToHtml:
     <<: *defaults
     docker: 
       - image: asciidoctor/docker-asciidoctor
     steps:
+      - run: pwd
+      - run: ls
       - checkout
       - run: pwd
       - run: asciidoctor getting-started.adoc 
