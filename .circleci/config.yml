@@ -23,8 +23,14 @@ jobs:
       - run: ls
       - checkout
       - run: pwd
-      - run: asciidoctor getting-started.adoc 
+      - run: asciidoctor getting-started.adoc
+      - run: mkdir -p workspace
+      - run: mv getting-started.html workspace/getting-started.html
       - run: ls
+      - persist_to_workspace:
+          root: workspace
+          paths:
+              - getting-started.html
 workflows:
   version: 2
   build:
