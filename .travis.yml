@@ -1,0 +1,41 @@
+language: node_js
+node_js:
+  - "6"
+before_script:
+  # instal hub c7f1d7f21db90dabb625afb5988be291de6d778b
+  - wget https://github.com/github/hub/releases/download/v2.3.0-pre10/hub-linux-amd64-2.3.0-pre10.tgz
+  - tar zvxvf hub-linux-amd64-2.3.0-pre10.tgz
+  - sudo ./hub-linux-amd64-2.3.0-pre10/install
+  - sed -i -e "s/UNAME/$GITHUB_USER/g" hub
+  - sed -i -e "s/TOKEN/$HUB_AUTH/g" hub
+  - cp hub $HOME/.config
+  - echo $TRAVIS_PULL_REQUEST
+  - pr_url="https://github.com/witmicko/gendocs/pull/$TRAVIS_PULL_REQUEST"
+  - echo $pr_url
+  - sed -i -e "s@SDK_PR_URL@$pr_url@g" pr_template.md
+  - cat pr_template.md
+  # install asciidoctor and convert
+
+  - docker run -v $TRAVIS_BUILD_DIR:/documents --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -b html5 /documents/getting-started.adoc
+  # clone origin-web-console
+  
+  # - touch getting-started.html
+  - git clone https://github.com/witmicko/origin-web-console.git
+  - cp getting-started.html origin-web-console/app/views/
+  - cd origin-web-console
+  - git status
+  - git config user.email "mogrodni+docs@redhat.com"
+  - git config user.name "docs-updater"
+  - git checkout -b docs_update 
+  - git add --all
+  - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
+  - git remote add $GITHUB_USER https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/$GITHUB_USER/origin-web-console.git
+
+  - git remote -v 
+  - git push $GITHUB_USER docs_update -f
+  - cat $TRAVIS_BUILD_DIR/pr_template.md
+  # - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master
+  - exit 0
+  # - git push origin docs_update  
+
+  
