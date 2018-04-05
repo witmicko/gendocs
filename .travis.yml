@@ -28,6 +28,7 @@ before_script:
   # - git config user.name "docs-updater"
   - git checkout -b docs_update 
   - git status -s
+  - git diff --quiet || echo 'no changes,exitting...' && exit 0
   - cp ../docs/getting-started/getting-started.html app/views/
   - git status -s
   - git add --all
@@ -38,4 +39,5 @@ before_script:
   # - git push $GITHUB_USER docs_update -f
   # - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master_test
   - exit 0
+
   
