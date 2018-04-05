@@ -19,13 +19,15 @@ before_script:
   
   # clone origin-web-console
   - git clone https://github.com/witmicko/origin-web-console.git
-  - cp docs/getting-started/getting-started.html origin-web-console/app/views/
+  # - cp docs/getting-started/getting-started.html origin-web-console/app/views/
   - cd origin-web-console
   - git remote -v
   - git checkout origin/master_test
   # - git config user.email "mogrodni+docs@redhat.com"
   # - git config user.name "docs-updater"
   - git checkout -b docs_update 
+  - git status
+  - cp ../docs/getting-started/getting-started.html origin-web-console/app/views/
   - git status
   - git add --all
   - git status
