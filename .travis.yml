@@ -23,12 +23,14 @@ before_script:
   - cd origin-web-console
   - git remote -v
   - git checkout origin/master_test
-  - git status
   # - git config user.email "mogrodni+docs@redhat.com"
   # - git config user.name "docs-updater"
-  # - git checkout -b docs_update 
-  # - git add --all
-  # - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
+  - git checkout -b docs_update 
+  - git status
+  - git add --all
+  - git status
+  - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
+  - git status
   # - git remote add $GITHUB_USER https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/$GITHUB_USER/origin-web-console.git
   # - git push $GITHUB_USER docs_update -f
   # - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master_test
