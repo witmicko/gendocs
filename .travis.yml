@@ -32,6 +32,7 @@ before_script:
   - if [[ $(git diff --stat) != '' ]]; then echo "doc changed, continuing"; else echo "no changes, stopping" && exit 0; fi
   - git add --all
   - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
+  - git log
   # - git remote add $GITHUB_USER https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/$GITHUB_USER/origin-web-console.git
   # - git push $GITHUB_USER docs_update -f
   # - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master_test
