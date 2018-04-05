@@ -12,6 +12,7 @@ before_script:
   - SDK_PR_URL_STR="https://github.com/witmicko/gendocs/pull/$TRAVIS_PULL_REQUEST"
   - sed -i -e "s@SDK_PR_URL@$SDK_PR_URL_STR@g" pr_template.md
   - cat pr_template.md
+
   
   # install asciidoctor and convert
 
@@ -26,13 +27,13 @@ before_script:
   # - git config user.email "mogrodni+docs@redhat.com"
   # - git config user.name "docs-updater"
   - git checkout -b docs_update 
-  - git status
+  - git status -s
   - cp ../docs/getting-started/getting-started.html origin-web-console/app/views/
-  - git status
+  - git status -s
   - git add --all
-  - git status
+  - git status -s
   - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
-  - git status
+  - git status -s
   # - git remote add $GITHUB_USER https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/$GITHUB_USER/origin-web-console.git
   # - git push $GITHUB_USER docs_update -f
   # - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master_test
