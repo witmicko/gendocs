@@ -29,9 +29,8 @@ before_script:
   - git checkout -b docs_update 
   - cp ../docs/getting-started/getting-started.html app/views/
   - git status -s
-  - git add --all
-  - git status -s
   - if [[ $(git diff --stat) != '' ]]; then echo "doc changed, continuing"; else echo "no changes, stopping" && exit 0; fi
+  - git add --all
   - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
   # - git remote add $GITHUB_USER https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/$GITHUB_USER/origin-web-console.git
   # - git push $GITHUB_USER docs_update -f
