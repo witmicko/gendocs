@@ -15,7 +15,7 @@ before_script:
   
   # install asciidoctor and convert
 
-  - docker run -v $TRAVIS_BUILD_DIR:/documents --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -b html5 /documents/getting-started.adoc
+  - docker run -v $TRAVIS_BUILD_DIR:/documents --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -b html5 /documents/docs/getting-started/getting-started.adoc
   
   # clone origin-web-console
 
