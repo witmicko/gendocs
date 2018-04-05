@@ -18,18 +18,16 @@ before_script:
   - docker run -v $TRAVIS_BUILD_DIR:/documents --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -b html5 /documents/docs/getting-started/getting-started.adoc
   
   # clone origin-web-console
-  - ls
-  - ls docs/getting-started/
-  # - git clone https://github.com/witmicko/origin-web-console.git
+  - git clone https://github.com/witmicko/origin-web-console.git
   - cp docs/getting-started/getting-started.html origin-web-console/app/views/
-  # - cd origin-web-console
-  # - git config user.email "mogrodni+docs@redhat.com"
-  # - git config user.name "docs-updater"
-  # - git checkout -b docs_update 
-  # - git add --all
-  # - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
-  # - git remote add $GITHUB_USER https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/$GITHUB_USER/origin-web-console.git
-  # - git push $GITHUB_USER docs_update -f
-  # - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master_test
+  - cd origin-web-console
+  - git config user.email "mogrodni+docs@redhat.com"
+  - git config user.name "docs-updater"
+  - git checkout -b docs_update 
+  - git add --all
+  - git commit -m "updated docs $TRAVIS_BUILD_NUMBER"
+  - git remote add $GITHUB_USER https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/$GITHUB_USER/origin-web-console.git
+  - git push $GITHUB_USER docs_update -f
+  - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master_test
   - exit 0
   
