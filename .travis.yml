@@ -28,7 +28,7 @@ before_script:
   # - git config user.name "docs-updater"
   - git checkout -b docs_update 
   - git status -s
-  - cp ../docs/getting-started/getting-started.html origin-web-console/app/views/
+  - cp ../docs/getting-started/getting-started.html app/views/
   - git status -s
   - git add --all
   - git status -s
