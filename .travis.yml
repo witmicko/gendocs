@@ -31,6 +31,4 @@ before_script:
   # - git push $GITHUB_USER docs_update -f
   # - hub pull-request -F $TRAVIS_BUILD_DIR/pr_template.md -b witmicko:master
   - exit 0
-  # - git push origin docs_update  
-
   
