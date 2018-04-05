@@ -20,7 +20,7 @@ before_script:
   # clone origin-web-console
 
   - git clone https://github.com/witmicko/origin-web-console.git
-  - cp getting-started.html origin-web-console/app/views/
+  - cp /docs/getting-started/getting-started.html origin-web-console/app/views/
   - cd origin-web-console
   - git config user.email "mogrodni+docs@redhat.com"
   - git config user.name "docs-updater"
