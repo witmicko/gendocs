@@ -1,0 +1,41 @@
+defaults: &defaults
+  working_directory: /repo
+
+version: 2
+jobs:
+  once:
+    <<: *defaults
+    docker: 
+      - image: circleci/node:6
+    steps:
+      - restore_cache:
+          keys:
+            - docfile
+      - run: cat getting-started.html
+      - run: ls
+      - run: pwd
+      - git clone git@github.com:witmicko/origin-web-console.git
+      - run: ls
+  convertToHtml:
+    <<: *defaults
+    docker: 
+      - image: asciidoctor/docker-asciidoctor
+    steps:
+      - run: pwd
+      - run: ls
+      - checkout
+      - run: pwd
+      - run: asciidoctor getting-started.adoc
+      - save_cache:
+          key: docfile
+          paths: getting-started.html
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - convertToHtml
+      - once:
+          requires:
+            - convertToHtml
+      
